@@ -14,6 +14,8 @@ import { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import theme from './source/style/Theme';
 import ProfileScreen from './source/screen/ProfileScreen';
 import LoginScreen from './source/screen/LoginScreen';
@@ -58,10 +60,20 @@ export default class App extends Component {
 
   Lyric () {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{
+          labelStyle: styles.tabBarStyle
+        }}
+      >
         <Tab.Screen
           name="Miu"
           component={TestScreen}
+          // options={{
+          //   tabBarLabel: 'Home',
+          //   tabBarIcon: ({ color, size }) => (
+          //     <MaterialCommunityIcons name="home" color={color} size={size} />
+          //   ),
+          //}}
         />
         <Tab.Screen
           name="Home"
@@ -110,4 +122,9 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  tabBarStyle: {
+    fontSize: 20,
+    fontWeight: '600',
+    
+  }
 });
