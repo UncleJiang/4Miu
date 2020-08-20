@@ -20,6 +20,7 @@ const Data = [
   {id: '2', text: 'Item'},
   {id: '2', text: 'Item'},
 ];
+const searchApi = 'http://msearchcdn.kugou.com/api/v3/search/song?showtype=14&highlight=em&pagesize=30&tag_aggr=1&tagtype=全部&plat=0&sver=5&keyword=你好&correct=1&api_ver=1&version=9108&page=1&area_code=1&tag=1&with_res_tag=1'
 // const [isLoading, setLoading] = useState(true);
 // const [mdata, setMData] = useState([]);
 // const Item = ({ title }) => {
@@ -49,14 +50,35 @@ export default class SearchScreen extends Component {
   //     console.error(error);
   //   }
   // }
+  // componentDidMount () {
+  //   return fetch('https://reactnative.dev/movies.json')
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       this.setState({
+  //         isLoading: false,
+  //         mdata: responseJson.movies,
+  //       }, function() {
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     })
+  // }
+
+
   componentDidMount () {
-    return fetch('https://reactnative.dev/movies.json')
-      .then((response) => response.json())
+    return fetch(searchApi)
+      .then((response) => response.text())
+      .then((responseText) => {
+        let response2 = responseText.slice(23,-21);
+        return JSON.parse(response2);
+      })
       .then((responseJson) => {
         this.setState({
           isLoading: false,
-          mdata: responseJson.movies,
+          mdata: responseJson.data.info,
         }, function() {
+
         });
       })
       .catch((error) => {
@@ -68,7 +90,9 @@ export default class SearchScreen extends Component {
     <ListItem>
       <ListItem.Part middle>
         {/* <Text text50>{item.text} #{item.id}</Text> */}
-        <Text>{item.title},{item.releaseYear}</Text>
+        <Text>{item.songname_original}</Text>
+        <Text>{item.singername}</Text>
+        {/* <Text>{item.filesize}{item.bitrate}</Text> */}
       </ListItem.Part>
     </ListItem>
   );

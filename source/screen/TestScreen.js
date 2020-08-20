@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Image, StyleSheet} from 'react-native';
+import {Alert, Image, StyleSheet, ScrollView} from 'react-native';
 import {
   View,
   Text,
@@ -26,6 +26,7 @@ export default class TestScreen extends Component {
       showButton: false,
       value1: true,
       value2: false,
+      searchText: '',
     };
   }
 
@@ -34,8 +35,18 @@ export default class TestScreen extends Component {
   //   value2: false,
   // };
 
+  onChangeText = text => {
+    this.setState({searchText:text});
+  };
+
+  onSubmitEditing = text => {
+    this.setState({searchText:text});
+    this.onPress();
+  };
+
+
   onPress = () => {
-    Alert.alert('Info button pressed');
+    Alert.alert('Info button pressed' + this.state.searchText);
     this.props.navigation.navigate('Search');
   };
 
@@ -89,6 +100,9 @@ export default class TestScreen extends Component {
             style={{width: 190,}}
             // floatOnFocus
             rightButtonProps={{iconSource: search, onPress: this.onPress, accessibilityLabel: 'TextField Info'}} //添加按enter键查询
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitEditing}
+            // keyboardType="default"
           />
           <Switch
             onColor={Colors.orange30}
@@ -146,10 +160,19 @@ export default class TestScreen extends Component {
           />
         </View>
 
-    
-          {/* 待：播放进度条 */}
           <Card
             marginV-30
+            paddingV-16
+          >
+            {/* <Text>{songName}</Text>
+            <Text>{singerName}</Text> */}
+            <Text>songName</Text>
+            <Text>singerName</Text>
+          </Card>
+
+          {/* 待：播放进度条 */}
+          <Card
+            marginB-26
             paddingV-16
           >
             <Text>---------------------------------------------------------</Text>
