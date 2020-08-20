@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Image, StyleSheet, ScrollView} from 'react-native';
+import {observer, inject} from 'mobx-react';
+
 import {
   View,
   Text,
@@ -18,6 +20,8 @@ import playIcon from '../image/icon/play.png';
 import album1 from '../image/album/timg.jpg';
 
 const INPUT_SPACING = 10;
+@inject('stores')
+@observer
 export default class TestScreen extends Component {
   constructor (props) {
     super(props);
@@ -36,17 +40,23 @@ export default class TestScreen extends Component {
   // };
 
   onChangeText = text => {
-    this.setState({searchText:text});
+    // this.setState({searchText:text});
+    this.props.stores.changeSearchText(text);
   };
 
   onSubmitEditing = text => {
-    this.setState({searchText:text});
-    this.onPress();
+    // this.setState({searchText:text});
+    this.props.stores.changeSearchText(text);
+    // this.onPress();
+    Alert.alert('Info button pressed' + this.props.stores.searchText);
+    console.log(this.props.stores.searchText);
+    this.props.navigation.navigate('Search');
   };
 
 
   onPress = () => {
-    Alert.alert('Info button pressed' + this.state.searchText);
+    Alert.alert('Info button pressed' + this.props.stores.searchText);
+    console.log(this.props.stores.searchText);
     this.props.navigation.navigate('Search');
   };
 
@@ -82,6 +92,7 @@ export default class TestScreen extends Component {
   };
 
   render () {
+    const { stores } = this.props;
     return (
       <View flex padding-page>
         <View row width={'100%'} center marginV-20>
@@ -166,8 +177,8 @@ export default class TestScreen extends Component {
           >
             {/* <Text>{songName}</Text>
             <Text>{singerName}</Text> */}
-            <Text>songName</Text>
-            <Text>singerName</Text>
+            <Text>{stores.songName}</Text>
+            <Text>{stores.singerName}</Text>
           </Card>
 
           {/* 待：播放进度条 */}

@@ -15,6 +15,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Provider} from 'mobx-react';
+import stores from './source/store';
 
 import theme from './source/style/Theme';
 import ProfileScreen from './source/screen/ProfileScreen';
@@ -29,32 +31,34 @@ const Tab = createBottomTabNavigator();
 export default class App extends Component {
   render () {
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Lyric"
-            component={ this.Lyric }
-            options={{ title: '4Miu - MiusicName' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
-          />
-          <Stack.Screen
-            name="Home"
-            component={ HomeScreen }
-            options={{ title: '4Miu - MiusicName' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
-          />
-          <Stack.Screen
-            name="Profile"
-            component={ ProfileScreen }
-          />
-          <Stack.Screen
-            name="Login"
-            component={ LoginScreen }
-          />
-          <Stack.Screen
-            name="Search"
-            component={ SearchScreen }
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider stores={stores}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Lyric"
+              component={ this.Lyric }
+              options={{ title: '4Miu' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
+            />
+            <Stack.Screen
+              name="Home"
+              component={ HomeScreen }
+              options={{ title: '4Miu' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
+            />
+            <Stack.Screen
+              name="Profile"
+              component={ ProfileScreen }
+            />
+            <Stack.Screen
+              name="Login"
+              component={ LoginScreen }
+            />
+            <Stack.Screen
+              name="Search"
+              component={ SearchScreen }
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 
