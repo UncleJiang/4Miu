@@ -97,6 +97,7 @@ export default class SearchScreen extends Component {
     this.props.stores.changeSongName(item.songname_original);
     this.props.stores.changeSingerName(item.singername);
     Alert.alert('click'+id + this.props.stores.songName);
+    console.log('Type: ' + typeof(this.props.stores.songName));
   }
 
   request1 () {    //待改名
@@ -152,12 +153,30 @@ export default class SearchScreen extends Component {
     >
       <ListItem.Part middle>
         {/* <Text text50>{item.text} #{item.id}</Text> */}
-        <Text>{item.songname_original}</Text>
-        <Text>{item.singername}</Text>
+        {/* <Text>{item.songname_original.replace(/<em>/, '').replace(/<\/em>/, '')}</Text> */}
+        {/* <Text>{item.singername.replace(/<em>/, '').replace(/<\/em>/, '')}</Text> */}
+        <Text>{this.renderEm(item.songname_original)}</Text>
+        <Text>{this.renderEm(item.singername)}</Text>
         {/* <Text>{item.filesize}{item.bitrate}</Text> */}
       </ListItem.Part>
     </ListItem>
   );
+
+  renderEm (itemStr) {
+    itemStr = ' ' + itemStr;
+    if (itemStr.search('<em>') >= 0){
+      arr1 = itemStr.split('<em>');
+      arr2 = arr1[1].split('</em>');
+    
+      return (
+        <Text>{arr1[0]}<Text red10>{arr2[0]}</Text>{arr2[1]}</Text>
+        );
+    } else {
+      return (
+        <Text>{itemStr}</Text>
+      );
+    }
+  }
 
   render () {
     const items = this.state.items;

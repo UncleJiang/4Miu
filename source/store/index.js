@@ -17,12 +17,12 @@ class indexStore {
 
   @action
   changeSongName(songN) {
-    this.songName = songN;
+    this.songName = songN.replace(/<em>/, '').replace(/<\/em>/, '');
   }
 
   @action
   changeSingerName(singerN) {
-    this.singerName = singerN;
+    this.singerName = singerN.replace(/<em>/, '').replace(/<\/em>/, '');
   }
 
   constructor() {

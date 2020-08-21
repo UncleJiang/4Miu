@@ -172,13 +172,15 @@ export default class TestScreen extends Component {
         </View>
 
           <Card
-            marginV-30
+            marginT-30
+            marginB-10
             paddingV-16
+            paddingH-16
           >
             {/* <Text>{songName}</Text>
             <Text>{singerName}</Text> */}
-            <Text>{stores.songName}</Text>
-            <Text>{stores.singerName}</Text>
+            <Text text40 dark10>{stores.songName}</Text>
+            <Text text70 dark10>{stores.singerName}</Text>
           </Card>
 
           {/* 待：播放进度条 */}
