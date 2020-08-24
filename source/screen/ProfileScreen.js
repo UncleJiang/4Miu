@@ -17,7 +17,7 @@ export default class ProfileScreen extends Component {
     return (
       <View>
         <Text>
-          renxinfuzajibanchongchong
+          test
         </Text>
       </View>
     );

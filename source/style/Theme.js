@@ -1,6 +1,5 @@
 import { Colors, Typography, Spacings } from 'react-native-ui-lib';   //base foundation
 import {ThemeManager, Button} from 'react-native-ui-lib';   // theme setting for components
-// import { Button } from 'react-native-ui-lib/generatedTypes/components/button';
 
 Colors.loadColors({
   primaryColor: '#2364AA',
@@ -26,16 +25,4 @@ Spacings.loadSpacings({
 ThemeManager.setComponentTheme('Card', {
   borderRadius: 8,
   activeOpacity: 0.9
-});
-
-ThemeManager.setComponentTheme('Button', (props, context) => {
-  if (props.square) {
-    return {
-      borderRadius: 0
-    };
-  } else if (props.circle) {
-    return {
-      round: true
-    };
-  }
 });

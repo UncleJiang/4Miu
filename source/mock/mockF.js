@@ -17,9 +17,6 @@ Mock.mock(/testMockFetch\.json/, {
             'name': '@name', //随机名字
             'tel': '@string('number', 11)',
             'password': '@string(8)',
-              // name: '小茗同学',
-              // age: 18,
-              // address: '中国北京朝阳区'
           },
       ],
   },

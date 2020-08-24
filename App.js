@@ -14,7 +14,6 @@ import { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Provider} from 'mobx-react';
 import stores from './source/store';
 
@@ -22,7 +21,7 @@ import theme from './source/style/Theme';
 import ProfileScreen from './source/screen/ProfileScreen';
 import LoginScreen from './source/screen/LoginScreen';
 import TestScreen from './source/screen/TestScreen';
-import HomeScreen from './source/screen/HomeScreen';
+import LyricScreen from './source/screen/LyricScreen';
 import SearchScreen from './source/screen/SearchScreen';
 
 const Stack = createStackNavigator();
@@ -35,14 +34,14 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="Lyric"
-              component={ this.Lyric }
-              options={{ title: '4Miu' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
+              name="Home"
+              component={ this.HomeM }
+              options={{ title: '4Miu' }}
             />
             <Stack.Screen
-              name="Home"
-              component={ HomeScreen }
-              options={{ title: '4Miu' }} //之后变量传入，变量为'4Miu - ' + { MiusicName }
+              name="Lyric"
+              component={ LyricScreen }
+              options={{ title: '4Miu' }}
             />
             <Stack.Screen
               name="Profile"
@@ -62,7 +61,7 @@ export default class App extends Component {
     );
   }
 
-  Lyric () {
+  HomeM () {
     return (
       <Tab.Navigator
         tabBarOptions={{
@@ -70,18 +69,12 @@ export default class App extends Component {
         }}
       >
         <Tab.Screen
-          name="Miu"
+          name="Home"
           component={TestScreen}
-          // options={{
-          //   tabBarLabel: 'Home',
-          //   tabBarIcon: ({ color, size }) => (
-          //     <MaterialCommunityIcons name="home" color={color} size={size} />
-          //   ),
-          //}}
         />
         <Tab.Screen
-          name="Home"
-          component={HomeScreen}
+          name="Lyric"
+          component={LyricScreen}
         />
       </Tab.Navigator>
     );
@@ -92,39 +85,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
   },
   tabBarStyle: {
     fontSize: 20,

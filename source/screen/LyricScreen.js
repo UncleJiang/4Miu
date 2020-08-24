@@ -7,13 +7,7 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-
-
-// const Stack = createStackNavigator();
-
-export default class HomeScreen extends Component {
+export default class LyricScreen extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,26 +15,21 @@ export default class HomeScreen extends Component {
     return (
       <View style={styles.body}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          {<Text>Home Screenvxcv</Text>   /* 待 */}
+          {<Text>Lyric Screen</Text>   /* 待 */}
         </View>
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Step One</Text>
+          <Text blue50 text20 marginT-20>Lyrics</Text>
           <Text style={styles.sectionDescription}>
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
+            xxxxxxxxxxxxxxxxx
           </Text>
         </View>
-        <Button
+        {/* <Button
           title="Go To Profile"
           onPress={() => this.props.navigation.navigate('Profile')}
           />
         <Button
           title="Go To Login"
           onPress={() => this.props.navigation.navigate('Login')}
-          />
-        {/* <Button
-          title="Go To Test"
-          onPress={() => this.props.navigation.navigate('Test')}
           /> */}
       </View>
     );
@@ -73,16 +62,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
   },
 });

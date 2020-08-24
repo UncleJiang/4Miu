@@ -21,7 +21,6 @@ import nextIcon from '../image/icon/next.png';
 import playIcon from '../image/icon/play.png';
 import album1 from '../image/album/timg.jpg';
 
-const INPUT_SPACING = 10;
 @inject('stores')
 @observer
 export default class TestScreen extends Component {
@@ -59,35 +58,26 @@ export default class TestScreen extends Component {
   setDuration(duration) {
     this.setState({ duration: duration.duration });
   }
-  
-  // state = {
-  //   value1: true,
-  //   value2: false,
-  // };
 
   onChangeText = text => {
-    // this.setState({searchText:text});
     this.props.stores.changeSearchText(text);
   };
 
   onSubmitEditing = text => {
-    // this.setState({searchText:text});
     this.props.stores.changeSearchText(text);
-    // this.onPress();
     Alert.alert('Info button pressed' + this.props.stores.searchText);
     console.log(this.props.stores.searchText);
     this.props.navigation.navigate('Search');
   };
 
-
   onPress = () => {
-    Alert.alert('Info button pressed' + this.props.stores.searchText);
+    // Alert.alert('Info button pressed' + this.props.stores.searchText);
     console.log(this.props.stores.searchText);
     this.props.navigation.navigate('Search');
   };
 
   onPressUser = () => {
-    Alert.alert('Info button pressed');
+    // Alert.alert('Info button pressed');
     this.props.navigation.navigate('Login');
   };
 
@@ -107,20 +97,15 @@ export default class TestScreen extends Component {
     });
   };
 
-  notNow = () => {
-    Alert.alert('Not Now!');
-    this.hideButton();
-  };
-
   close = () => {
-    Alert.alert('Closed.');     //关闭并添加到我喜欢列表
+    // Alert.alert('Closed.');     //关闭并添加到我喜欢列表
     this.hideButton();
   };
 
   render () {
     const { stores } = this.props;
     return (
-      <View flex padding-page>
+      <View flex padding-page style={styles.body}>
         <View row width={'100%'} center marginV-20>
           <Button
             round
@@ -135,11 +120,9 @@ export default class TestScreen extends Component {
             placeholder="Search..."
             maxLength={50}
             style={{width: 190,}}
-            // floatOnFocus
             rightButtonProps={{iconSource: search, onPress: this.onPress, accessibilityLabel: 'TextField Info'}} //添加按enter键查询
             onChangeText={this.onChangeText}
             onSubmitEditing={this.onSubmitEditing}
-            // keyboardType="default"
           />
           <Switch
             onColor={Colors.orange30}
@@ -150,13 +133,6 @@ export default class TestScreen extends Component {
           />
         </View>
         <View row width={'100%'} center marginT-25>
-          
-          {/* <Image
-            source={album1}
-            style={{width: 330, height: 330}}
-            borderRadius={300}
-            centered
-          /> */}
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
               style={{marginRight: 10}}
@@ -170,12 +146,6 @@ export default class TestScreen extends Component {
               />
             </TouchableOpacity>
           </View>
-          {/* <Button
-            round
-            iconSource={heartIcon}
-            backgroundColor="#FF7F50"
-            style={{width: 50, height: 50}}
-          /> */}
           <FloatingButton
             style={styles.floatButton}
             visible={this.state.showButton}
@@ -186,11 +156,6 @@ export default class TestScreen extends Component {
               backgroundColor: "#FF7F50",
               style: styles.floatButton
             }}
-            // secondaryButton={{
-            //   label: 'Not now',
-            //   onPress: this.onPress,
-            //   color: Colors.red30
-            // }}
             bottomMargin={80}
             hideBackgroundOverlay={true}
             
@@ -203,20 +168,12 @@ export default class TestScreen extends Component {
             paddingV-16
             paddingH-16
           >
-            {/* <Text>{songName}</Text>
-            <Text>{singerName}</Text> */}
             <Text text40 dark10>{stores.songName}</Text>
             <Text text70 dark10>{stores.singerName}</Text>
           </Card>
 
-          {/* 待：播放进度条 */}
-          
-            
-         
           <Video
             source={{uri: 'http://fs.android2.kugou.com/463fa1ef2889627ea079d9c7e29f7248/5f3f85df/G111/M06/1D/10/D4cBAFoL9VyASCmXADTAFw14uaI428.mp3'}}
-            // source={{uri: 'http://fs.android.kugou.com/202008211621/475ab82eaee88b2e0076c8d61fccf15d/G111/M06/1D/10/D4cBAFoL9VyASCmXADTAFw14uaI428.mp3'}}
-            // source={{uri: 'http://fs.android.kugou.com/202008211403/a08c29ca249a421e3076580db41b448e/G111/M06/1D/10/D4cBAFoL9VyASCmXADTAFw14uaI428.mp3'}}
             ref={(ref) => {
               this.player = ref
             }}
@@ -250,7 +207,7 @@ export default class TestScreen extends Component {
           
           <Button
             round
-            iconSource={playIcon}       // 三元运算符？state？与stopIcon切换
+            iconSource={playIcon}       // 待
             backgroundColor="#FF7F50"
             style={styles.playBtns}
           />
@@ -270,7 +227,7 @@ const styles = StyleSheet.create({
   floatButton: {
     width: 50,
     bottom: 30,
-    backgroundColor: "#FF7F50"   // 加点透明度
+    backgroundColor: "#FF7F50"
   },
   bar: {
     alignItems: "center"
@@ -289,10 +246,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
 
-  }
-  // buttonsContainer: {
-  //   position: "absolute",
-  //   width: 330,
-  //   height: 330,
-  // }
+  },
+  body: {
+    backgroundColor: Colors.white,
+  },
 });
